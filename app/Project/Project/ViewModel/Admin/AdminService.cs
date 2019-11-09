@@ -1,0 +1,97 @@
+﻿using Project.Model;
+using Project.View.Admin;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Linq;
+using System.Runtime.CompilerServices;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Project.ViewModel.Admin
+{
+    public class AdminService : INotifyPropertyChanged
+    {
+        #region INotifyPropertyChanged
+        public event PropertyChangedEventHandler PropertyChanged;
+        private void NotifyPropertyChanged([CallerMemberName] string propertyName = "")
+            => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        #endregion
+
+        #region Properties
+        private AdminWindow _parrent;
+        public Command Closing { get; set; }
+
+        public Command SettingsBack { get; set; }
+        public Command SettingsForward { get; set; }
+        public Command SettingsLogout { get; set; }
+
+        public Command ServersInfo { get; set; }
+        public Command ServersAdd { get; set; }
+        public Command ServersLocations { get; set; }
+
+        #endregion
+
+        public AdminService(AdminWindow parrent)
+        {
+            _parrent = parrent;
+            Closing = AppSettings.WindowService.Closing;
+            AppSettings.WindowService.Frame = _parrent.Frame;
+
+            SettingsBack = new Command(_SettingsBack, _parrent.Frame.CanGoBack);
+            SettingsForward = new Command(_SettingsForward, _parrent.Frame.CanGoForward);
+            SettingsLogout = new Command(_SettingsLogout);
+
+            ServersInfo = new Command(_ServersInfo);
+            ServersAdd = new Command(_ServersAdd);
+            ServersLocations = new Command(_ServersLocations);
+
+
+            _parrent.Frame.Navigated += _NavigateButtonsUpdate;
+        }
+
+        #region Commands
+
+        private void _SettingsBack()
+        {
+            AppSettings.WindowService.NavigateBack();
+        }
+        private void _SettingsForward()
+        {
+            AppSettings.WindowService.NavigateForward();
+        }
+        private void _SettingsLogout()
+        {
+            AppSettings.WindowService.Back();
+        }
+
+        private void _ServersInfo()
+        {
+            AppSettings.WindowService.Navigate(new ServersInfo());
+        }
+        private void _ServersAdd()
+        {
+            AppSettings.WindowService.Navigate(new AddServer());
+        }
+        private void _ServersLocations()
+        {
+            AppSettings.WindowService.Navigate(new Locations());
+        }
+
+
+
+
+
+        #endregion
+
+        #region Methods
+
+        private void _NavigateButtonsUpdate(object sender, System.Windows.Navigation.NavigationEventArgs e)
+        {
+            SettingsForward.isCanExecute = _parrent.Frame.CanGoForward;
+            SettingsBack.isCanExecute = _parrent.Frame.CanGoBack;
+        }
+
+        #endregion
+    }
+}
