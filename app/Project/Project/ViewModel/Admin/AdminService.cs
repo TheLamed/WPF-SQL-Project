@@ -32,6 +32,8 @@ namespace Project.ViewModel.Admin
 
         public Command UsersInfo { get; set; }
         public Command UsersAdd { get; set; }
+
+        public Command OrdersInfo { get; set; }
         #endregion
 
         public AdminService(AdminWindow parrent)
@@ -50,6 +52,8 @@ namespace Project.ViewModel.Admin
 
             UsersInfo = new Command(_UsersInfo);
             UsersAdd = new Command(_UsersAdd);
+
+            OrdersInfo = new Command(_OrdersInfo);
 
             _parrent.Frame.Navigated += _NavigateButtonsUpdate;
         }
@@ -91,7 +95,10 @@ namespace Project.ViewModel.Admin
             AppSettings.WindowService.Navigate(new UsersAdd());
         }
 
-
+        private void _OrdersInfo()
+        {
+            AppSettings.WindowService.Navigate(new OrdersInfo());
+        }
         #endregion
 
         #region Methods

@@ -26,6 +26,7 @@ namespace Project.Model.Controllers
         private SqlDataReader reader;
 
         public event Action UsersChanged;
+
         #endregion
 
         public UsersController()
@@ -114,7 +115,6 @@ namespace Project.Model.Controllers
                 reader = getInfo.ExecuteReader();
                 if (reader.HasRows)
                 {
-                    reader.Read();
                     info = new UserInfo(user, reader, isAdmin);
                 }
                 else

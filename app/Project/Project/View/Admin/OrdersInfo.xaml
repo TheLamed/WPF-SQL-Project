@@ -1,0 +1,38 @@
+﻿<Page x:Class="Project.View.Admin.OrdersInfo"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Project.View.Admin"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Hosting: Orders">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="4*"/>
+            <RowDefinition Height="3*"/>
+        </Grid.RowDefinitions>
+        <ListBox
+            Grid.Column="0"
+            Grid.Row="0"
+            Grid.RowSpan="2"
+            ItemsSource="{Binding Orders}"
+            SelectedItem="{Binding SelectedOrder}"
+            />
+        <TextBlock
+            Grid.Column="1"
+            Grid.Row="0"
+            Text="{Binding Info}"
+            />
+        <ListBox
+            Grid.Column="1"
+            Grid.Row="1"
+            ItemsSource="{Binding InfoUsers}"
+            />
+    </Grid>
+</Page>

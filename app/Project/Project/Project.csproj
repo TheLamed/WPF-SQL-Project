@@ -55,12 +55,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Model\Controllers\OrdersController.cs" />
     <Compile Include="Model\Controllers\ServerController.cs" />
     <Compile Include="Model\Controllers\UsersController.cs" />
     <Compile Include="Model\Exceptions\NullIdException.cs" />
     <Compile Include="Model\Exceptions\NullReqiuredFieldException.cs" />
     <Compile Include="Model\Exceptions\ZeroRowsExecutedException.cs" />
     <Compile Include="Model\Models\Location.cs" />
+    <Compile Include="Model\Models\Order.cs" />
+    <Compile Include="Model\Models\OrderInfo.cs" />
     <Compile Include="Model\Models\Server.cs" />
     <Compile Include="Model\Models\ServerInfo.cs" />
     <Compile Include="Model\Models\UserInfo.cs" />
@@ -68,6 +71,7 @@
     <Compile Include="ViewModel\Admin\AddUserService.cs" />
     <Compile Include="ViewModel\Admin\AdminService.cs" />
     <Compile Include="ViewModel\Admin\LocationsService.cs" />
+    <Compile Include="ViewModel\Admin\OrdersService.cs" />
     <Compile Include="ViewModel\Admin\ServersService.cs" />
     <Compile Include="ViewModel\Admin\UsersService.cs" />
     <Compile Include="ViewModel\RegistrationService.cs" />
@@ -80,6 +84,9 @@
     </Compile>
     <Compile Include="View\Admin\Locations.xaml.cs">
       <DependentUpon>Locations.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Admin\OrdersInfo.xaml.cs">
+      <DependentUpon>OrdersInfo.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Admin\ServersInfo.xaml.cs">
       <DependentUpon>ServersInfo.xaml</DependentUpon>
@@ -105,6 +112,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Admin\Locations.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Admin\OrdersInfo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

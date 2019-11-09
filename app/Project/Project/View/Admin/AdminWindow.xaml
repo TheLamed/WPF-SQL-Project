@@ -32,7 +32,7 @@
                 <MenuItem Header="Add" Command="{Binding UsersAdd}"/>
             </MenuItem>
             <MenuItem Header="Orders">
-                <MenuItem Header="Info"/>
+                <MenuItem Header="Info" Command="{Binding OrdersInfo}"/>
             </MenuItem>
         </Menu>
         <Frame 
