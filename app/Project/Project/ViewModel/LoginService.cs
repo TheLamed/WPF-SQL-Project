@@ -3,7 +3,6 @@ using Project.Model.Controllers;
 using Project.Model.Models;
 using Project.View;
 using Project.View.Admin;
-using Project.View.User;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -75,7 +74,7 @@ namespace Project.ViewModel
                 return;
             }
 
-            User user = userController.Login(Login, Password);
+            Model.Models.User user = userController.Login(Login, Password);
             if(user == null)
             {
                 AppSettings.WindowService.ShowErrorMessage("Incorrect login or password!");
@@ -91,7 +90,7 @@ namespace Project.ViewModel
             }
             else
             {
-                AppSettings.WindowService.Push(new UserWindow());
+                AppSettings.WindowService.Push(new View.Users.UserWindow());
             }
 
             Login = "";

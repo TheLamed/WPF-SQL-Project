@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Project.ViewModel.Users;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,7 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace Project.View.User
+namespace Project.View.Users
 {
     /// <summary>
     /// Interaction logic for UserWindow.xaml
@@ -22,6 +23,11 @@ namespace Project.View.User
         public UserWindow()
         {
             InitializeComponent();
+            DataContext = new UserService(this);
+        }
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            (DataContext as UserService)?.Closing.Execute(null);
         }
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Project.Model.Exceptions
 {
-    class ZeroRowsExecutedException : Exception
+    public class ZeroRowsExecutedException : Exception
     {
         public ZeroRowsExecutedException() : base()
         {

@@ -67,6 +67,7 @@
     <Compile Include="ViewModel\Admin\LocationsService.cs" />
     <Compile Include="ViewModel\Admin\ServersService.cs" />
     <Compile Include="ViewModel\RegistrationService.cs" />
+    <Compile Include="ViewModel\Users\UserService.cs" />
     <Compile Include="View\Admin\AddServer.xaml.cs">
       <DependentUpon>AddServer.xaml</DependentUpon>
     </Compile>
@@ -82,7 +83,7 @@
     <Compile Include="View\Registration.xaml.cs">
       <DependentUpon>Registration.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\User\UserWindow.xaml.cs">
+    <Compile Include="View\Users\UserWindow.xaml.cs">
       <DependentUpon>UserWindow.xaml</DependentUpon>
     </Compile>
     <Page Include="View\Admin\AddServer.xaml">
@@ -130,7 +131,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\User\UserWindow.xaml">
+    <Page Include="View\Users\UserWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
