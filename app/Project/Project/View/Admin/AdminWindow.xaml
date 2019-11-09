@@ -28,8 +28,8 @@
                 <MenuItem Header="Locations" Command="{Binding ServersLocations}"/>
             </MenuItem>
             <MenuItem Header="Users">
-                <MenuItem Header="Info"/>
-                <MenuItem Header="Add"/>
+                <MenuItem Header="Info" Command="{Binding UsersInfo}"/>
+                <MenuItem Header="Add" Command="{Binding UsersAdd}"/>
             </MenuItem>
             <MenuItem Header="Orders">
                 <MenuItem Header="Info"/>

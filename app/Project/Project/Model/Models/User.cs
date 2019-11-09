@@ -31,13 +31,27 @@ namespace Project.Model.Models
             Email = reader.IsDBNull(5) ? null : reader.GetString(5);
         }
 
-        public User(string login, string password, string name = null, string surname = null, string email = null)
+        public User(string login, string password, string name = null, string surname = null, string email = null, int? id = null)
         {
+            ID = id;
             Login = login;
             Password = password;
             Name = name;
             Surname = surname;
             Email = email;
         }
+
+        protected User(User user)
+        {
+            ID = user.ID;
+            Login = user.Login;
+            Password = user.Password;
+            Name = user.Name;
+            Surname = user.Surname;
+            Email = user.Email;
+        }
+
+        public override string ToString() 
+            => $"{(ID != null ? ID.ToString() : "_")}: {Login}";
     }
 }

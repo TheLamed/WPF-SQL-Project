@@ -30,6 +30,8 @@ namespace Project.ViewModel.Admin
         public Command ServersAdd { get; set; }
         public Command ServersLocations { get; set; }
 
+        public Command UsersInfo { get; set; }
+        public Command UsersAdd { get; set; }
         #endregion
 
         public AdminService(AdminWindow parrent)
@@ -46,6 +48,8 @@ namespace Project.ViewModel.Admin
             ServersAdd = new Command(_ServersAdd);
             ServersLocations = new Command(_ServersLocations);
 
+            UsersInfo = new Command(_UsersInfo);
+            UsersAdd = new Command(_UsersAdd);
 
             _parrent.Frame.Navigated += _NavigateButtonsUpdate;
         }
@@ -78,8 +82,14 @@ namespace Project.ViewModel.Admin
             AppSettings.WindowService.Navigate(new Locations());
         }
 
-
-
+        private void _UsersInfo()
+        {
+            AppSettings.WindowService.Navigate(new UsersInfo());
+        }
+        private void _UsersAdd()
+        {
+            AppSettings.WindowService.Navigate(new UsersAdd());
+        }
 
 
         #endregion

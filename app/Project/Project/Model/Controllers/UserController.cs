@@ -15,7 +15,7 @@ namespace Project.Model.Controllers
         #region Propertys
 
         private SqlConnection connection;
-        private SqlCommand getUser, isAdmin, registerUser;
+        private SqlCommand getUser, isAdmin, registerUser, isLoginUsed;
         private SqlDataReader reader;
 
         #endregion
@@ -34,13 +34,17 @@ namespace Project.Model.Controllers
             isAdmin.Parameters.Add("@id", SqlDbType.Int).Value = DBNull.Value;
 
             registerUser = new SqlCommand() { Connection = connection };
-            registerUser.CommandText = "EXEC RegisterUser @name, @surname, @login, @password, @email";
+            registerUser.CommandText = "EXEC RegisterUser @name, @surname, @login, @password, @email, @isAdmin";
             registerUser.Parameters.Add("@name", SqlDbType.Text).Value = DBNull.Value;
             registerUser.Parameters.Add("@surname", SqlDbType.Text).Value = DBNull.Value;
             registerUser.Parameters.Add("@login", SqlDbType.Text).Value = DBNull.Value;
             registerUser.Parameters.Add("@password", SqlDbType.Text).Value = DBNull.Value;
             registerUser.Parameters.Add("@email", SqlDbType.Text).Value = DBNull.Value;
+            registerUser.Parameters.Add("@isAdmin", SqlDbType.Int).Value = 0;
 
+            isLoginUsed = new SqlCommand() { Connection = connection };
+            isLoginUsed.CommandText = "EXEC isLoginUsed @login";
+            isLoginUsed.Parameters.Add("@login", SqlDbType.Text).Value = DBNull.Value;
         }
 
         #region Methods

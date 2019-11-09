@@ -56,16 +56,20 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Model\Controllers\ServerController.cs" />
+    <Compile Include="Model\Controllers\UsersController.cs" />
     <Compile Include="Model\Exceptions\NullIdException.cs" />
     <Compile Include="Model\Exceptions\NullReqiuredFieldException.cs" />
     <Compile Include="Model\Exceptions\ZeroRowsExecutedException.cs" />
     <Compile Include="Model\Models\Location.cs" />
     <Compile Include="Model\Models\Server.cs" />
     <Compile Include="Model\Models\ServerInfo.cs" />
+    <Compile Include="Model\Models\UserInfo.cs" />
     <Compile Include="ViewModel\Admin\AddServerService.cs" />
+    <Compile Include="ViewModel\Admin\AddUserService.cs" />
     <Compile Include="ViewModel\Admin\AdminService.cs" />
     <Compile Include="ViewModel\Admin\LocationsService.cs" />
     <Compile Include="ViewModel\Admin\ServersService.cs" />
+    <Compile Include="ViewModel\Admin\UsersService.cs" />
     <Compile Include="ViewModel\RegistrationService.cs" />
     <Compile Include="ViewModel\Users\UserService.cs" />
     <Compile Include="View\Admin\AddServer.xaml.cs">
@@ -79,6 +83,12 @@
     </Compile>
     <Compile Include="View\Admin\ServersInfo.xaml.cs">
       <DependentUpon>ServersInfo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Admin\UsersAdd.xaml.cs">
+      <DependentUpon>UsersAdd.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Admin\UsersInfo.xaml.cs">
+      <DependentUpon>UsersInfo.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Registration.xaml.cs">
       <DependentUpon>Registration.xaml</DependentUpon>
@@ -99,6 +109,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Admin\ServersInfo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Admin\UsersAdd.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Admin\UsersInfo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
