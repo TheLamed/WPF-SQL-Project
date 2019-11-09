@@ -102,6 +102,7 @@ namespace Project.ViewModel.Admin
         public AddServerService(Server server) : this()
         {
             if (server == null || server.ID == null) return;
+
             isUpdate = true;
             ServerID = server.ID ?? 0;
             Processor = server.Processor;
