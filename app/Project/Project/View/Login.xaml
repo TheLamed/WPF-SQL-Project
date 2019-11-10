@@ -8,6 +8,9 @@
         Title="Hosting: Login" Height="450" Width="800"
         
         Closing="Window_Closing">
+    <Window.Resources>
+        <ResourceDictionary Source="Styles.xaml" />
+    </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>

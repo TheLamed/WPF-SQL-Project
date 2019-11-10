@@ -7,7 +7,9 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Hosting: Add User">
-
+    <Page.Resources>
+        <ResourceDictionary Source="/View/Styles.xaml" />
+    </Page.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>

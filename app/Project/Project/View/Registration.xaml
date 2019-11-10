@@ -8,6 +8,9 @@
         Title="Hosting: Registration" Height="450" Width="800"
         
         Closing="Window_Closing">
+    <Window.Resources>
+        <ResourceDictionary Source="/View/Styles.xaml" />
+    </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -35,7 +38,7 @@
         <Label
             Grid.Column="0"
             Grid.Row="2"
-            Content="Confirm Password"
+            Content="Confirm"
             />
         <Label
             Grid.Column="0"

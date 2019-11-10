@@ -9,7 +9,9 @@
       Title="ServersInfo"
       
       ShowsNavigationUI="False">
-
+    <Page.Resources>
+        <ResourceDictionary Source="/View/Styles.xaml" />
+    </Page.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
