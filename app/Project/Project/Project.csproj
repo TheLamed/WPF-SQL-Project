@@ -75,6 +75,8 @@
     <Compile Include="ViewModel\Admin\ServersService.cs" />
     <Compile Include="ViewModel\Admin\UsersService.cs" />
     <Compile Include="ViewModel\RegistrationService.cs" />
+    <Compile Include="ViewModel\Users\EditUserService.cs" />
+    <Compile Include="ViewModel\Users\UserProfileService.cs" />
     <Compile Include="ViewModel\Users\UserService.cs" />
     <Compile Include="View\Admin\AddServer.xaml.cs">
       <DependentUpon>AddServer.xaml</DependentUpon>
@@ -99,6 +101,12 @@
     </Compile>
     <Compile Include="View\Registration.xaml.cs">
       <DependentUpon>Registration.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Users\EditUser.xaml.cs">
+      <DependentUpon>EditUser.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Users\UserProfile.xaml.cs">
+      <DependentUpon>UserProfile.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Users\UserWindow.xaml.cs">
       <DependentUpon>UserWindow.xaml</DependentUpon>
@@ -157,6 +165,14 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="View\Registration.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Users\EditUser.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Users\UserProfile.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

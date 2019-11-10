@@ -10,9 +10,9 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-namespace Project.ViewModel
+namespace Project.ViewModel.Users
 {
-    class RegistrationService : INotifyPropertyChanged
+    public class EditUserService : INotifyPropertyChanged
     {
         #region INotifyPropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;
@@ -21,10 +21,9 @@ namespace Project.ViewModel
         #endregion
 
         #region Properties
-        private UserController userController { get; set; }
+        private UsersController usersController { get; set; }
 
         private string _Login, _Password, _ConfirmPassword, _Name, _Surname, _Email;
-
         public string Login
         {
             get => _Login;
@@ -80,34 +79,40 @@ namespace Project.ViewModel
             }
         }
 
-        public Command Register { get; set; }
-        public Command Back { get; set; }
-        public Command Closing { get; set; }
+        public Command Save { get; set; }
         #endregion
 
         #region Constructors
-        public RegistrationService()
+        public EditUserService()
         {
-            userController = new UserController();
-            Closing = AppSettings.WindowService.Closing;
+            usersController = new UsersController();
 
-            Register = new Command(_Register);
-            Back = new Command(_Back);
+            Login = AppSettings.CurrentUser.Login;
+            Name = AppSettings.CurrentUser.Name;
+            Surname = AppSettings.CurrentUser.Surname;
+            Email = AppSettings.CurrentUser.Email;
+
+            Save = new Command(_Save);
         }
         #endregion
 
         #region Commands
 
-        private void _Register()
+        private void _Save()
         {
-            if(Login == null || Login == "")
+            if (Login == null || Login == "")
             {
                 AppSettings.WindowService.ShowErrorMessage("Login is empty!");
                 return;
             }
             if (Password == null || Password == "")
             {
-                AppSettings.WindowService.ShowErrorMessage("Password is empty!");
+                Password = AppSettings.CurrentUser.Password;
+                ConfirmPassword = AppSettings.CurrentUser.Password;
+            }
+            if (Login != AppSettings.CurrentUser.Login && usersController.IsLoginUsed(Login))
+            {
+                AppSettings.WindowService.ShowErrorMessage("This Login alredy used!");
                 return;
             }
             if (ConfirmPassword == null || ConfirmPassword == "" || Password != ConfirmPassword)
@@ -115,24 +120,21 @@ namespace Project.ViewModel
                 AppSettings.WindowService.ShowErrorMessage("Passwords are different!");
                 return;
             }
-            if(Email != null && Email != "" && !new Regex(@"[A-Za-z0-9_]+@[A-Za-z0-9_]+\.[A-Za-z0-9_]+").IsMatch(Email))
+            if (Email != null && Email != "" && !new Regex(@"[A-Za-z0-9_]+@[A-Za-z0-9_]+\.[A-Za-z0-9_]+").IsMatch(Email))
             {
                 AppSettings.WindowService.ShowErrorMessage("Email is not valid!");
                 return;
             }
 
-            User user = new User(Login, Password, Name, Surname, Email);
-
-            userController.RegisterUser(user);
-
-            AppSettings.WindowService.ShowOkMessage("User registrated!");
-            Back.Execute(null);
+            User user = new User(Login, Password, Name, Surname, Email, AppSettings.CurrentUser.ID);
+            usersController.UpdateUser(user, AppSettings.IsAdmin);
+            AppSettings.WindowService.ShowOkMessage("Changes saved!");
+            AppSettings.CurrentUser = user;
         }
 
-        private void _Back()
-        {
-            AppSettings.WindowService.Back();
-        }
+        #endregion
+
+        #region Methods
 
         #endregion
     }

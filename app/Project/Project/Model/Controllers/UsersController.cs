@@ -271,8 +271,7 @@ namespace Project.Model.Controllers
             try
             {
                 connection.Open();
-                if (setAdmin.ExecuteNonQuery() == 0)
-                    throw new ZeroRowsExecutedException();
+                setAdmin.ExecuteNonQuery();
             }
             finally
             {

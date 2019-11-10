@@ -9,12 +9,30 @@
         
         Closing="Window_Closing">
     <Grid>
-
-        <Frame
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Menu
+            Grid.Row="0">
+            <MenuItem Header="Settings">
+                <MenuItem Header="Back" Command="{Binding SettingsBack}"/>
+                <MenuItem Header="Forward" Command="{Binding SettingsForward}"/>
+                <Separator/>
+                <MenuItem Header="My profile" Command="{Binding SettingsProfile}"/>
+                <MenuItem Header="Edit profile" Command="{Binding SettingsEditProfile}"/>
+                <Separator/>
+                <MenuItem Header="Logout" Command="{Binding SettingsLogout}"/>
+            </MenuItem>
+            <MenuItem Header="Orders">
+                <MenuItem Header="My orders" Command="{Binding }"/>
+                <MenuItem Header="New order" Command="{Binding }"/>
+            </MenuItem>
+        </Menu>
+        <Frame 
             x:Name="Frame"
-            
+            Grid.Row="1"
             NavigationUIVisibility="Hidden"
-            Source=".xaml"
-            />
+            Source="UserProfile.xaml"/>
     </Grid>
 </Window>

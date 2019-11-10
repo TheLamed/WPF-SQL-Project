@@ -22,14 +22,59 @@ namespace Project.ViewModel.Users
         private UserWindow _parrent;
         public Command Closing { get; set; }
 
+        public Command SettingsBack { get; set; }
+        public Command SettingsForward { get; set; }
+        public Command SettingsProfile { get; set; }
+        public Command SettingsLogout { get; set; }
+        public Command SettingsEditProfile { get; set; }
+
         #endregion
 
+        #region Constructors
         public UserService(UserWindow parrent)
         {
             _parrent = parrent;
-
             Closing = AppSettings.WindowService.Closing;
             AppSettings.WindowService.Frame = _parrent.Frame;
+            _parrent.Frame.Navigated += _NavigateButtonsUpdate;
+
+            SettingsBack = new Command(_SettingsBack, _parrent.Frame.CanGoBack);
+            SettingsForward = new Command(_SettingsForward, _parrent.Frame.CanGoForward);
+            SettingsLogout = new Command(_SettingsLogout);
+            SettingsProfile = new Command(_SettingsProfile);
+            SettingsEditProfile = new Command(_SettingsEditProfile);
         }
+        #endregion
+
+        #region Commands
+        private void _SettingsBack()
+        {
+            AppSettings.WindowService.NavigateBack();
+        }
+        private void _SettingsForward()
+        {
+            AppSettings.WindowService.NavigateForward();
+        }
+        private void _SettingsLogout()
+        {
+            AppSettings.WindowService.Back();
+        }
+        private void _SettingsProfile()
+        {
+            AppSettings.WindowService.Navigate(new UserProfile());
+        }
+        private void _SettingsEditProfile()
+        {
+            AppSettings.WindowService.Navigate(new EditUser());
+        }
+        #endregion
+
+        #region Methods
+        private void _NavigateButtonsUpdate(object sender, System.Windows.Navigation.NavigationEventArgs e)
+        {
+            SettingsForward.isCanExecute = _parrent.Frame.CanGoForward;
+            SettingsBack.isCanExecute = _parrent.Frame.CanGoBack;
+        }
+        #endregion
     }
 }
