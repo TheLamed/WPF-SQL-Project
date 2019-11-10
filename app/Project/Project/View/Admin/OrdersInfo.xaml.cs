@@ -26,5 +26,10 @@ namespace Project.View.Admin
             InitializeComponent();
             DataContext = new OrdersService();
         }
+        public OrdersInfo(IEnumerable<int> orders)
+        {
+            InitializeComponent();
+            DataContext = new OrdersService(orders);
+        }
     }
 }

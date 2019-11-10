@@ -14,7 +14,7 @@ namespace Project.Model.Controllers
         #region Propertys
 
         private SqlConnection connection;
-        private SqlCommand getOrders, getUserById, getUsersByOrder;
+        private SqlCommand getOrders, getUserById, getUsersByOrder, getOrderById;
         private SqlDataReader reader;
 
         public event Action OrdersChanged;
@@ -35,6 +35,10 @@ namespace Project.Model.Controllers
             getUsersByOrder = new SqlCommand() { Connection = connection };
             getUsersByOrder.CommandText = "EXEC GetUsersByOrder @ID";
             getUsersByOrder.Parameters.Add("@ID", SqlDbType.Int).Value = DBNull.Value;
+
+            getOrderById = new SqlCommand() { Connection = connection };
+            getOrderById.CommandText = "EXEC GetOrderById @ID";
+            getOrderById.Parameters.Add("@ID", SqlDbType.Int).Value = DBNull.Value;
         }
 
         #region Methods
@@ -98,7 +102,32 @@ namespace Project.Model.Controllers
             return info;
         }
 
+        public List<Order> GetOrders(IEnumerable<int> orders)
+        {
+            List<Order> Orders = new List<Order>();
 
+            try
+            {
+                connection.Open();
+                foreach (var item in orders)
+                {
+                    getOrderById.Parameters["@ID"].Value = item;
+                    reader = getOrderById.ExecuteReader();
+                    if (reader.HasRows)
+                    {
+                        reader.Read();
+                        Orders.Add(new Order(reader));
+                        reader.Close();
+                    }
+                }
+            }
+            finally
+            {
+                Close();
+                getOrderById.Parameters["@ID"].Value = DBNull.Value;
+            }
+            return Orders;
+        }
 
         private void Close()
         {

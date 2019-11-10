@@ -63,6 +63,7 @@ namespace Project.ViewModel.Admin
 
         public Command Update { get; set; }
         public Command Remove { get; set; }
+        public Command Orders { get; set; }
 
         #endregion
 
@@ -76,7 +77,7 @@ namespace Project.ViewModel.Admin
 
             Update = new Command(_Update);
             Remove = new Command(_Remove);
-
+            Orders = new Command(_Orders);
         }
 
         #region Commands
@@ -99,6 +100,21 @@ namespace Project.ViewModel.Admin
                 return;
             }
             usersController.RemoveUser(SelectedUser);
+        }
+
+        public void _Orders()
+        {
+            if (SelectedUser == null)
+            {
+                AppSettings.WindowService.ShowErrorMessage("Please select User!");
+                return;
+            }
+            if (Info.Orders.Count == 0)
+            {
+                AppSettings.WindowService.ShowErrorMessage("This User have no orders!");
+                return;
+            }
+            AppSettings.WindowService.Navigate(new OrdersInfo(Info.Orders));
         }
 
         #endregion

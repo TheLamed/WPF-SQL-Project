@@ -49,7 +49,7 @@ namespace Project.ViewModel.Admin
         }
         public List<string> InfoUsers => Info.Users;
 
-
+        private IEnumerable<int> _Orders { get; set; }
         #endregion
 
         #region Constructors
@@ -61,7 +61,15 @@ namespace Project.ViewModel.Admin
             Orders = new ObservableCollection<Order>();
             ordersController.OrdersChanged += OrdersChanged;
             OrdersChanged();
+        }
+        public OrdersService(IEnumerable<int> orders)
+        {
+            ordersController = new OrdersController();
+            _Orders = orders;
 
+            Orders = new ObservableCollection<Order>();
+            ordersController.OrdersChanged += UserOrdersChanged;
+            UserOrdersChanged();
         }
 
         #endregion
@@ -77,6 +85,12 @@ namespace Project.ViewModel.Admin
         {
             Orders.Clear();
             foreach (var item in ordersController.GetOrders())
+                Orders.Add(item);
+        }
+        private void UserOrdersChanged()
+        {
+            Orders.Clear();
+            foreach (var item in ordersController.GetOrders(_Orders))
                 Orders.Add(item);
         }
         private void OrderChanged()
