@@ -151,7 +151,7 @@ namespace Project.ViewModel.Admin
                 AppSettings.WindowService.ShowErrorMessage("Passwords are different!");
                 return;
             }
-            if (Email != null && Email != "" && new Regex(@"[A-Za-z0-9_]+@[A-Za-z0-9_]\.[A-Za-z0-9_]").IsMatch(Email))
+            if (Email != null && Email != "" && !new Regex(@"[A-Za-z0-9_]+@[A-Za-z0-9_]+\.[A-Za-z0-9_]+").IsMatch(Email))
             {
                 AppSettings.WindowService.ShowErrorMessage("Email is not valid!");
                 return;
