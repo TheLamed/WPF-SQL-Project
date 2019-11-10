@@ -79,7 +79,7 @@ namespace Project.ViewModel.Users
         }
         private void _OrdersNew()
         {
-            //AppSettings.WindowService.Navigate();
+            AppSettings.WindowService.Navigate(new NewOrder());
         }
         #endregion
 

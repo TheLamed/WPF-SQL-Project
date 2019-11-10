@@ -1,4 +1,5 @@
-﻿using Project.Model.Models;
+﻿using Project.Model.Exceptions;
+using Project.Model.Models;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -14,7 +15,7 @@ namespace Project.Model.Controllers
         #region Propertys
 
         private SqlConnection connection;
-        private SqlCommand getOrders, getUserById, getUsersByOrder, getOrderById;
+        private SqlCommand getOrders, getUserById, getUsersByOrder, getOrderById, addOrder;
         private SqlDataReader reader;
 
         public event Action OrdersChanged;
@@ -40,6 +41,13 @@ namespace Project.Model.Controllers
             getOrderById = new SqlCommand() { Connection = connection };
             getOrderById.CommandText = "EXEC GetOrderById @ID";
             getOrderById.Parameters.Add("@ID", SqlDbType.Int).Value = DBNull.Value;
+
+            addOrder = new SqlCommand() { Connection = connection };
+            addOrder.CommandText = "EXEC AddOrder @owner, @server, @start, @finish";
+            addOrder.Parameters.Add("@owner", SqlDbType.Int).Value = DBNull.Value;
+            addOrder.Parameters.Add("@server", SqlDbType.Int).Value = DBNull.Value;
+            addOrder.Parameters.Add("@start", SqlDbType.Date).Value = DBNull.Value;
+            addOrder.Parameters.Add("@finish", SqlDbType.Date).Value = DBNull.Value;
         }
         #endregion
 
@@ -151,6 +159,29 @@ namespace Project.Model.Controllers
                 getUsersByOrder.Parameters["@ID"].Value = DBNull.Value;
             }
             return users;
+        }
+
+        public void AddOrder(Order order)
+        {
+            addOrder.Parameters["@owner"].Value = order.OwnerID;
+            addOrder.Parameters["@server"].Value = order.ServerID;
+            addOrder.Parameters["@start"].Value = order.StartDate;
+            addOrder.Parameters["@finish"].Value = order.FinishDate;
+
+            try
+            {
+                connection.Open();
+                if (addOrder.ExecuteNonQuery() == 0)
+                    throw new ZeroRowsExecutedException();
+            }
+            finally
+            {
+                Close();
+                addOrder.Parameters["@owner"].Value = DBNull.Value;
+                addOrder.Parameters["@server"].Value = DBNull.Value;
+                addOrder.Parameters["@start"].Value = DBNull.Value;
+                addOrder.Parameters["@finish"].Value = DBNull.Value;
+            }
         }
 
         private void Close()

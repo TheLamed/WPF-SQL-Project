@@ -24,7 +24,8 @@ namespace Project.Model.Controllers
             removeLocation,
             addLocation,
             updateLocation, 
-            getServer;
+            getServer,
+            findServers;
         private SqlDataReader reader;
 
         public event Action ServersChanged;
@@ -87,6 +88,12 @@ namespace Project.Model.Controllers
             getServer = new SqlCommand() { Connection = connection };
             getServer.CommandText = "EXEC GetServer @ID";
             getServer.Parameters.Add("@ID", SqlDbType.Int).Value = DBNull.Value;
+
+            findServers = new SqlCommand() { Connection = connection };
+            findServers.CommandText = "EXEC FindServers @proc, @RAM, @SSD";
+            findServers.Parameters.Add("@proc", SqlDbType.Text).Value = DBNull.Value;
+            findServers.Parameters.Add("@RAM", SqlDbType.Int).Value = DBNull.Value;
+            findServers.Parameters.Add("@SSD", SqlDbType.Int).Value = DBNull.Value;
         }
         #endregion
 
@@ -323,6 +330,32 @@ namespace Project.Model.Controllers
                 getServer.Parameters["@ID"].Value = DBNull.Value;
             }
             return server;
+        }
+
+        public List<Server> FingServers(string proc = "", int ram = -1, int ssd = -1)
+        {
+            List<Server> servers = new List<Server>();
+
+            findServers.Parameters["@proc"].Value = proc;
+            findServers.Parameters["@RAM"].Value = ram;
+            findServers.Parameters["@SSD"].Value = ssd;
+
+            try
+            {
+                connection.Open();
+                reader = findServers.ExecuteReader();
+                if (reader.HasRows)
+                    while (reader.Read())
+                        servers.Add(new Server(reader));
+            }
+            finally
+            {
+                Close();
+                findServers.Parameters["@proc"].Value = DBNull.Value;
+                findServers.Parameters["@RAM"].Value = DBNull.Value;
+                findServers.Parameters["@SSD"].Value = DBNull.Value;
+            }
+            return servers;
         }
 
         private void Close()
