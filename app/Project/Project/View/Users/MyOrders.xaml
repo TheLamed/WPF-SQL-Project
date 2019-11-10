@@ -50,6 +50,7 @@
                 Grid.Row="1"
                 ItemsSource="{Binding OwnOrders}"
                 SelectedItem="{Binding SelectedOwnOrder}"
+                MouseDoubleClick="ListBox_MouseDoubleClick"
                 />
         </Grid>
         <TextBlock

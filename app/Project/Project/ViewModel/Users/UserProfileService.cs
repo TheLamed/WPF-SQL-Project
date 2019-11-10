@@ -60,6 +60,7 @@ namespace Project.ViewModel.Users
 
         public Command EditButton { get; set; }
         public Command ViewButton { get; set; }
+        public Command OwnOrderSelect { get; set; }
 
         #endregion
 
@@ -78,10 +79,15 @@ namespace Project.ViewModel.Users
 
             EditButton = new Command(_EditButton);
             ViewButton = new Command(_ViewButton);
+            OwnOrderSelect = new Command(_OwnOrderSelect);
         }
         #endregion
 
         #region Commands
+        private void _OwnOrderSelect()
+        {
+            AppSettings.WindowService.Navigate(new OrderSettings(SelectedOwnOrder.ID));
+        }
 
         private void _ViewButton()
         {
@@ -92,19 +98,10 @@ namespace Project.ViewModel.Users
                     AppSettings.WindowService.ShowErrorMessage("Please select order!");
                     return;
                 }
-
-
+                AppSettings.WindowService.Navigate(new OrderSettings(SelectedOwnOrder.ID));
             }
             else
-            {
-                if (SelectedOrder == null)
-                {
-                    AppSettings.WindowService.ShowErrorMessage("Please select order!");
-                    return;
-                }
-
-
-            }
+                AppSettings.WindowService.ShowErrorMessage("It`s not your own order!");
         }
 
         private void _EditButton()

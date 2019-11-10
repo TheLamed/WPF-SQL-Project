@@ -17,19 +17,14 @@ using System.Windows.Shapes;
 namespace Project.View.Users
 {
     /// <summary>
-    /// Interaction logic for MyOrders.xaml
+    /// Interaction logic for OrderSettings.xaml
     /// </summary>
-    public partial class MyOrders : Page
+    public partial class OrderSettings : Page
     {
-        public MyOrders()
+        public OrderSettings(int OrderID)
         {
             InitializeComponent();
-            DataContext = new MyOrdersService();
-        }
-
-        private void ListBox_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-        {
-            (DataContext as MyOrdersService)?.OwnOrderSelect.Execute(null);
+            DataContext = new OrderSettingsService(OrderID);
         }
     }
 }

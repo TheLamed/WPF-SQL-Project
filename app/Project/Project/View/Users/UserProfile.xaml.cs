@@ -26,5 +26,10 @@ namespace Project.View.Users
             InitializeComponent();
             DataContext = new UserProfileService();
         }
+
+        private void ListBox_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            (DataContext as UserProfileService)?.OwnOrderSelect.Execute(null);
+        }
     }
 }

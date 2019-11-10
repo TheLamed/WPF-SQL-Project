@@ -22,7 +22,8 @@ namespace Project.Model.Controllers
             updateUser, 
             isLoginUsed, 
             isAdmin, 
-            setAdmin;
+            setAdmin,
+            getUserByLogin;
         private SqlDataReader reader;
 
         public event Action UsersChanged;
@@ -76,6 +77,10 @@ namespace Project.Model.Controllers
             setAdmin.CommandText = "EXEC SetAdmin @isAdmin, @ID";
             setAdmin.Parameters.Add("@isAdmin", SqlDbType.Int).Value = DBNull.Value;
             setAdmin.Parameters.Add("@ID", SqlDbType.Int).Value = DBNull.Value;
+
+            getUserByLogin = new SqlCommand() { Connection = connection };
+            getUserByLogin.CommandText = "EXEC GetUserByLogin @login";
+            getUserByLogin.Parameters.Add("@login", SqlDbType.Text).Value = DBNull.Value;
         }
         #endregion
 
@@ -279,6 +284,33 @@ namespace Project.Model.Controllers
                 setAdmin.Parameters["@isAdmin"].Value = DBNull.Value;
                 setAdmin.Parameters["@ID"].Value = DBNull.Value;
             }
+        }
+
+        public User GetUserByLogin(string login)
+        {
+            login = login ?? "";
+
+            getUserByLogin.Parameters["@login"].Value = login;
+
+            User user = null;
+
+            try
+            {
+                connection.Open();
+                reader = getUserByLogin.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    reader.Read();
+                    user = new User(reader);
+                }
+            }
+            finally
+            {
+                Close();
+                getUserByLogin.Parameters["@login"].Value = DBNull.Value;
+            }
+            return user;
+
         }
 
         private void Close()

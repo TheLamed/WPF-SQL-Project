@@ -1,6 +1,7 @@
 ﻿using Project.Model;
 using Project.Model.Controllers;
 using Project.Model.Models;
+using Project.View.Users;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -110,6 +111,8 @@ namespace Project.ViewModel.Users
 
         public byte[] ServerImage => ServerInfo.Image;
 
+        public Command OwnOrderSelect { get; set; }
+
         #endregion
 
         #region Constructors
@@ -126,10 +129,16 @@ namespace Project.ViewModel.Users
 
             OrderUsers = new ObservableCollection<User>();
 
+            OwnOrderSelect = new Command(_OwnOrderSelect);
         }
         #endregion
 
         #region Commands
+
+        private void _OwnOrderSelect()
+        {
+            AppSettings.WindowService.Navigate(new OrderSettings(SelectedOwnOrder.ID));
+        }
 
         #endregion
 

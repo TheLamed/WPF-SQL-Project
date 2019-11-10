@@ -78,6 +78,7 @@
     <Compile Include="ViewModel\Users\EditUserService.cs" />
     <Compile Include="ViewModel\Users\MyOrdersService.cs" />
     <Compile Include="ViewModel\Users\NewOrderService.cs" />
+    <Compile Include="ViewModel\Users\OrderSettingsService.cs" />
     <Compile Include="ViewModel\Users\UserProfileService.cs" />
     <Compile Include="ViewModel\Users\UserService.cs" />
     <Compile Include="View\Admin\AddServer.xaml.cs">
@@ -112,6 +113,9 @@
     </Compile>
     <Compile Include="View\Users\NewOrder.xaml.cs">
       <DependentUpon>NewOrder.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Users\OrderSettings.xaml.cs">
+      <DependentUpon>OrderSettings.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Users\UserProfile.xaml.cs">
       <DependentUpon>UserProfile.xaml</DependentUpon>
@@ -185,6 +189,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Users\NewOrder.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Users\OrderSettings.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
