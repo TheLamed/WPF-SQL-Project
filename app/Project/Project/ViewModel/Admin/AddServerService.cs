@@ -88,6 +88,7 @@ namespace Project.ViewModel.Admin
 
         #endregion
 
+        #region Constructors
         public AddServerService()
         {
             serverController = new ServerController();
@@ -111,6 +112,7 @@ namespace Project.ViewModel.Admin
 
             SelectedLocation = Locations.First(location => location.ID == server.LocationID ? true : false);
         }
+        #endregion
 
         #region Commands
 

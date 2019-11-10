@@ -114,6 +114,7 @@ namespace Project.ViewModel.Admin
         public Command LocationSelected { get; set; }
         #endregion
 
+        #region Constructors
         public LocationsService()
         {
             serverController = new ServerController();
@@ -132,6 +133,7 @@ namespace Project.ViewModel.Admin
             RemoveLocation = new Command(_RemoveLocation, InfoGridVisibility == Visibility.Visible);
             LocationSelected = new Command(_Locationselected);
         }
+        #endregion
 
         #region Commands
 

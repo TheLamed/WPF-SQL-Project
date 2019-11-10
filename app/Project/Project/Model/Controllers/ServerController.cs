@@ -31,7 +31,7 @@ namespace Project.Model.Controllers
 
         #endregion
 
-
+        #region Constructors
         public ServerController()
         {
             connection = new SqlConnection(AppSettings.ConnectionString);
@@ -83,6 +83,7 @@ namespace Project.Model.Controllers
             updateLocation.Parameters.Add("@city", SqlDbType.Text).Value = DBNull.Value;
             updateLocation.Parameters.Add("@image", SqlDbType.Image).Value = DBNull.Value;
         }
+        #endregion
 
         #region Methods
 

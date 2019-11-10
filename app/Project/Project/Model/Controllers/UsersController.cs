@@ -29,6 +29,7 @@ namespace Project.Model.Controllers
 
         #endregion
 
+        #region Constructors
         public UsersController()
         {
             connection = new SqlConnection(AppSettings.ConnectionString);
@@ -76,6 +77,7 @@ namespace Project.Model.Controllers
             setAdmin.Parameters.Add("@isAdmin", SqlDbType.Int).Value = DBNull.Value;
             setAdmin.Parameters.Add("@ID", SqlDbType.Int).Value = DBNull.Value;
         }
+        #endregion
 
         #region Methods
 

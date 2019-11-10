@@ -12,11 +12,14 @@ namespace Project.ViewModel
 {
     public class WindowService
     {
+        #region Properties
         public Stack<Window> Windows { get; set; }
         public Command Closing { get; set; }
         private bool isClosing { get; set; }
         public Frame Frame { get; set; }
+        #endregion
 
+        #region Constructors
         public WindowService()
         {
             Windows = new Stack<Window>();
@@ -24,7 +27,9 @@ namespace Project.ViewModel
 
             isClosing = false;
         }
+        #endregion
 
+        #region Methods
         public void Push(Window window)
         {
             foreach (var item in Windows)
@@ -88,5 +93,6 @@ namespace Project.ViewModel
             }
             Windows.Clear();
         }
+        #endregion
     }
 }

@@ -20,6 +20,7 @@ namespace Project.Model.Controllers
 
         #endregion
 
+        #region Constructors
         public UserController()
         {
             connection = new SqlConnection(AppSettings.ConnectionString);
@@ -46,6 +47,7 @@ namespace Project.Model.Controllers
             isLoginUsed.CommandText = "EXEC isLoginUsed @login";
             isLoginUsed.Parameters.Add("@login", SqlDbType.Text).Value = DBNull.Value;
         }
+        #endregion
 
         #region Methods
 

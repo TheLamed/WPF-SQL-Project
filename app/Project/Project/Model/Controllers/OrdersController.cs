@@ -21,6 +21,7 @@ namespace Project.Model.Controllers
 
         #endregion
 
+        #region Constructors
         public OrdersController()
         {
             connection = new SqlConnection(AppSettings.ConnectionString);
@@ -40,6 +41,7 @@ namespace Project.Model.Controllers
             getOrderById.CommandText = "EXEC GetOrderById @ID";
             getOrderById.Parameters.Add("@ID", SqlDbType.Int).Value = DBNull.Value;
         }
+        #endregion
 
         #region Methods
 

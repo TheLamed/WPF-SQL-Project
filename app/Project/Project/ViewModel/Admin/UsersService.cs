@@ -67,6 +67,7 @@ namespace Project.ViewModel.Admin
 
         #endregion
 
+        #region Constructors
         public UsersService()
         {
             usersController = new UsersController();
@@ -79,6 +80,7 @@ namespace Project.ViewModel.Admin
             Remove = new Command(_Remove);
             Orders = new Command(_Orders);
         }
+        #endregion
 
         #region Commands
 

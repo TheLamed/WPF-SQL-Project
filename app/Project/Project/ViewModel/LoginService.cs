@@ -50,6 +50,7 @@ namespace Project.ViewModel
         public Command Closing { get; set; }
         #endregion
 
+        #region Constructors
         public LoginService()
         {
             Logining = new Command(_Logining);
@@ -58,6 +59,7 @@ namespace Project.ViewModel
 
             userController = new UserController();
         }
+        #endregion
 
         #region Commands
 

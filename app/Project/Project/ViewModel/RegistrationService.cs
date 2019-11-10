@@ -85,6 +85,7 @@ namespace Project.ViewModel
         public Command Closing { get; set; }
         #endregion
 
+        #region Constructors
         public RegistrationService()
         {
             userController = new UserController();
@@ -93,6 +94,7 @@ namespace Project.ViewModel
             Register = new Command(_Register);
             Back = new Command(_Back);
         }
+        #endregion
 
         #region Commands
 

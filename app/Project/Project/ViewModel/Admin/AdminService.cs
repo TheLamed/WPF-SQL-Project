@@ -36,6 +36,7 @@ namespace Project.ViewModel.Admin
         public Command OrdersInfo { get; set; }
         #endregion
 
+        #region Constructors
         public AdminService(AdminWindow parrent)
         {
             _parrent = parrent;
@@ -57,6 +58,7 @@ namespace Project.ViewModel.Admin
 
             _parrent.Frame.Navigated += _NavigateButtonsUpdate;
         }
+        #endregion
 
         #region Commands
 

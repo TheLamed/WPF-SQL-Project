@@ -98,6 +98,7 @@ namespace Project.ViewModel.Admin
         public Command AddButton { get; set; }
         #endregion
 
+        #region Constructors
         public AddUserService()
         {
             usersController = new UsersController();
@@ -124,6 +125,7 @@ namespace Project.ViewModel.Admin
             Surname = user.Surname;
             Email = user.Email;
         }
+        #endregion
 
         #region Commands
 
