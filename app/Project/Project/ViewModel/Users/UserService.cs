@@ -28,6 +28,8 @@ namespace Project.ViewModel.Users
         public Command SettingsLogout { get; set; }
         public Command SettingsEditProfile { get; set; }
 
+        public Command OrdersMy { get; set; }
+        public Command OrdersNew { get; set; }
         #endregion
 
         #region Constructors
@@ -43,6 +45,9 @@ namespace Project.ViewModel.Users
             SettingsLogout = new Command(_SettingsLogout);
             SettingsProfile = new Command(_SettingsProfile);
             SettingsEditProfile = new Command(_SettingsEditProfile);
+
+            OrdersMy = new Command(_OrdersMy);
+            OrdersNew = new Command(_OrdersNew);
         }
         #endregion
 
@@ -66,6 +71,15 @@ namespace Project.ViewModel.Users
         private void _SettingsEditProfile()
         {
             AppSettings.WindowService.Navigate(new EditUser());
+        }
+
+        private void _OrdersMy()
+        {
+            AppSettings.WindowService.Navigate(new MyOrders());
+        }
+        private void _OrdersNew()
+        {
+            //AppSettings.WindowService.Navigate();
         }
         #endregion
 

@@ -131,6 +131,28 @@ namespace Project.Model.Controllers
             return Orders;
         }
 
+        public List<User> GetUsersByOrder(Order order)
+        {
+            List<User> users = new List<User>();
+
+            getUsersByOrder.Parameters["@ID"].Value = order.ID;
+
+            try
+            {
+                connection.Open();
+                reader = getUsersByOrder.ExecuteReader();
+                if (reader.HasRows)
+                    while (reader.Read())
+                        users.Add(new User(reader));
+            }
+            finally
+            {
+                Close();
+                getUsersByOrder.Parameters["@ID"].Value = DBNull.Value;
+            }
+            return users;
+        }
+
         private void Close()
         {
             if (!(reader?.IsClosed ?? true))

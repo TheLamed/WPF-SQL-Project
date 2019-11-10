@@ -23,7 +23,8 @@ namespace Project.Model.Controllers
             updateSerevr,
             removeLocation,
             addLocation,
-            updateLocation;
+            updateLocation, 
+            getServer;
         private SqlDataReader reader;
 
         public event Action ServersChanged;
@@ -82,6 +83,10 @@ namespace Project.Model.Controllers
             updateLocation.Parameters.Add("@country", SqlDbType.Text).Value = DBNull.Value;
             updateLocation.Parameters.Add("@city", SqlDbType.Text).Value = DBNull.Value;
             updateLocation.Parameters.Add("@image", SqlDbType.Image).Value = DBNull.Value;
+
+            getServer = new SqlCommand() { Connection = connection };
+            getServer.CommandText = "EXEC GetServer @ID";
+            getServer.Parameters.Add("@ID", SqlDbType.Int).Value = DBNull.Value;
         }
         #endregion
 
@@ -175,7 +180,7 @@ namespace Project.Model.Controllers
             }
         }
 
-        public ServerInfo Info(Server server)
+        public ServerInfo GetInfo(Server server)
         {
             if (server.LocationID == null) throw new NullIdException("Location id is null.");
 
@@ -296,6 +301,29 @@ namespace Project.Model.Controllers
             LocationsChanged?.Invoke();
         }
 
+        public Server GetServer(int id)
+        {
+            Server server = null;
+
+            getServer.Parameters["@ID"].Value = id;
+
+            try
+            {
+                connection.Open();
+                reader = getServer.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    reader.Read();
+                    server = new Server(reader);
+                }
+            }
+            finally
+            {
+                Close();
+                getServer.Parameters["@ID"].Value = DBNull.Value;
+            }
+            return server;
+        }
 
         private void Close()
         {

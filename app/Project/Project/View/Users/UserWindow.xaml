@@ -25,8 +25,8 @@
                 <MenuItem Header="Logout" Command="{Binding SettingsLogout}"/>
             </MenuItem>
             <MenuItem Header="Orders">
-                <MenuItem Header="My orders" Command="{Binding }"/>
-                <MenuItem Header="New order" Command="{Binding }"/>
+                <MenuItem Header="My orders" Command="{Binding OrdersMy}"/>
+                <MenuItem Header="New order" Command="{Binding OrdersNew}"/>
             </MenuItem>
         </Menu>
         <Frame 

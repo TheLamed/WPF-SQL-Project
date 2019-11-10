@@ -100,7 +100,7 @@ namespace Project.ViewModel.Admin
 
         public void ServerChanged()
         {
-            Info = serverController.Info(SelectedServer);
+            Info = serverController.GetInfo(SelectedServer);
         }
 
         private void ServersChanged()
