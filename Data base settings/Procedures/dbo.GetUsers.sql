@@ -1,0 +1,8 @@
+﻿CREATE PROCEDURE GetUsers
+@login TEXT
+AS
+BEGIN
+
+SELECT * FROM Users WHERE Login LIKE CONCAT('%', @login, '%')
+
+END

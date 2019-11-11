@@ -1,0 +1,8 @@
+﻿CREATE PROCEDURE GetOrderById
+@ID INT
+AS
+BEGIN
+
+SELECT * FROM Orders WHERE ID = @ID
+
+END

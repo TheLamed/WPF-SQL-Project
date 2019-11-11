@@ -1,0 +1,8 @@
+﻿CREATE PROCEDURE RemoveLocation
+@ID INT
+AS
+BEGIN
+
+DELETE FROM Location WHERE ID = @ID
+
+END

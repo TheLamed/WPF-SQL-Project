@@ -1,0 +1,7 @@
+﻿CREATE PROCEDURE GetServers
+AS
+BEGIN
+
+SELECT * FROM Servers 
+
+END

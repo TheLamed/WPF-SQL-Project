@@ -1,0 +1,8 @@
+﻿CREATE PROCEDURE GetLocation
+@ID INT
+AS
+BEGIN
+
+SELECT Country, City, Photo FROM Location WHERE @ID = ID
+
+END

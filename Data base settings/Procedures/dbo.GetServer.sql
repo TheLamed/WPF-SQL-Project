@@ -1,0 +1,8 @@
+﻿CREATE PROCEDURE GetServer
+@ID INT
+AS
+BEGIN
+
+SELECT * FROM Servers WHERE ID = @ID
+
+END

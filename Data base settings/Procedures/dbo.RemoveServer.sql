@@ -1,0 +1,8 @@
+﻿CREATE PROCEDURE RemoveServer
+@ID INT
+AS
+BEGIN
+
+DELETE FROM Servers WHERE ID = @ID
+
+END

@@ -1,0 +1,14 @@
+﻿CREATE PROCEDURE IsLoginUsed
+@login TEXT
+AS
+BEGIN
+
+DECLARE @ret INT
+SELECT @ret = COUNT(*) FROM Users WHERE Login LIKE @login
+
+IF @ret = 0 
+	SELECT 0;
+ELSE
+	SELECT 1;
+
+END

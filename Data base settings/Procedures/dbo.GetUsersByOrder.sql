@@ -1,0 +1,11 @@
+﻿CREATE PROCEDURE GetUsersByOrder
+@ID INT
+AS
+BEGIN
+
+SELECT Users.* FROM Users
+LEFT JOIN UO
+ON Users.ID = UO.UserID
+WHERE UO.OrderID = @ID
+
+END
